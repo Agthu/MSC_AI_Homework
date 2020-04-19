@@ -83,4 +83,18 @@ w = (sum_xy() - n * avg_x() * avg_y()) / (sum_x2() - n * avg_x() * avg_x())
 b = avg_y() - w * avg_x()
 
 
-print(w)
+# 绘图
+def func(x):
+    return w*x+b
+
+
+data_x = data[:, :1]
+data_y = data[:, 1:]
+
+# 坐标系的大小由数据决定
+var_x = np.linspace(np.amin(data_x), np.amax(data_x), 1000)
+var_y = func(var_x)
+
+plt.scatter(data_x, data_y)
+plt.plot(var_x, var_y)
+plt.show()
